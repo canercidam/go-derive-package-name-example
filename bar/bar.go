@@ -1,13 +1,12 @@
 package bar
 
 import (
-	"fmt"
-	"reflect"
+	"runtime"
 )
 
-type t struct{}
+func PackagePath() string {
+	pc, _, _, _ := runtime.Caller(1)
+	serviceName := runtime.FuncForPC(pc).Name()
 
-func PackagePath() {
-	var typ t
-	fmt.Println(reflect.TypeOf(typ).PkgPath())
+	return serviceName
 }
